@@ -2,6 +2,9 @@ TARGET_USES_AOSP := true
 TARGET_USES_AOSP_FOR_AUDIO := false
 TARGET_USES_QCOM_BSP := false
 
+#Go variant flag
+TARGET_HAS_LOW_RAM := true
+
 ifeq ($(TARGET_USES_AOSP),true)
 TARGET_DISABLE_DASH := true
 endif
@@ -267,3 +270,5 @@ endif
 
 # Inherit Go default properties, sets is-low-ram-device flag etc.
 $(call inherit-product, build/target/product/go_defaults.mk)
+$(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackageGo.mk)
+PRODUCT_PROPERTY_OVERRIDES += dalvik.vm.foreground-heap-growth-multiplier=2.0

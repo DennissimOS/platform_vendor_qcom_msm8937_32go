@@ -182,24 +182,12 @@ TARGET_PER_MGR_ENABLED := true
 
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 
-DEX_PREOPT_DEFAULT := nostripping
-
-# Enable dex pre-opt to speed up initial boot
-ifneq ($(TARGET_USES_AOSP),true)
-  ifeq ($(HOST_OS),linux)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-      ifneq ($(TARGET_BUILD_VARIANT),user)
-        # Retain classes.dex in APK's for non-user builds
-        DEX_PREOPT_DEFAULT := nostripping
-      endif
+ifeq ($(HOST_OS),linux)
+    ifeq ($(WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY),)
+        WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
     endif
-  endif
 endif
 
 FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
 
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.msm
-
-#Go variant flag
-TARGET_HAS_LOW_RAM := true
