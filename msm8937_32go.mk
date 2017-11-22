@@ -273,3 +273,4 @@ endif
 $(call inherit-product, build/target/product/go_defaults.mk)
 $(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackageGo.mk)
 PRODUCT_PROPERTY_OVERRIDES += dalvik.vm.foreground-heap-growth-multiplier=2.0
+PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
