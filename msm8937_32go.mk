@@ -55,7 +55,6 @@ PRODUCT_COPY_FILES += device/qcom/msm8937_32go/whitelistedapps.xml:system/etc/wh
 PRODUCT_PROPERTY_OVERRIDES += \
        dalvik.vm.heapminfree=6m \
        dalvik.vm.heapstartsize=14m \
-       ro.config.low_ram=true
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, device/qcom/common/common.mk)
 
