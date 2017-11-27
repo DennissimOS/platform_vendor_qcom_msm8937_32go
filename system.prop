@@ -178,3 +178,4 @@ camera.display.lmax=1280x720
 
 #set cutoff voltage to 3400mV
 ro.cutoff_voltage_mv=3400
+dalvik.vm.extra-opts=-Xcompiler-option --inline-max-code-units=0
