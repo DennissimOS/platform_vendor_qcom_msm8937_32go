@@ -136,6 +136,8 @@ PRODUCT_PACKAGES += libSubSystemShutdown
 
 PRODUCT_PACKAGES += wcnss_service
 
+PRODUCT_PACKAGES += hal-server
+
 # MSM IRQ Balancer configuration file
 PRODUCT_COPY_FILES += \
     device/qcom/msm8937_32go/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
