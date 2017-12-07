@@ -259,6 +259,8 @@ endif
 
 PRODUCT_PROPERTY_OVERRIDES += rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 
+PRODUCT_PROPERTY_OVERRIDES += persist.radio.multisim.config=ssss
+
 ifeq ($(ENABLE_AB),true)
 #A/B related packages
 PRODUCT_PACKAGES += update_engine \
