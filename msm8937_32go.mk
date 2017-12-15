@@ -9,7 +9,7 @@ ifeq ($(TARGET_USES_AOSP),true)
 TARGET_DISABLE_DASH := true
 endif
 
-DEVICE_PACKAGE_OVERLAYS := device/qcom/msm8937_32go/overlay
+DEVICE_PACKAGE_OVERLAYS := device/qcom/msm8937_32go/overlay-go
 # Default vendor configuration.
 ifeq ($(ENABLE_VENDOR_IMAGE),)
 ENABLE_VENDOR_IMAGE := true
