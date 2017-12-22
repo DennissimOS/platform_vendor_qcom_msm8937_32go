@@ -53,11 +53,12 @@ PRODUCT_COPY_FILES += device/qcom/msm8937_32go/whitelistedapps.xml:system/etc/wh
                       device/qcom/msm8937_32go/gamedwhitelist.xml:system/etc/gamedwhitelist.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-       dalvik.vm.heapminfree=6m \
-       dalvik.vm.heapstartsize=14m \
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-$(call inherit-product, device/qcom/common/common.mk)
+    dalvik.vm.heapminfree=6m \
+    dalvik.vm.heapstartsize=8m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapmaxfree=8m \
 
+$(call inherit-product, device/qcom/common/common.mk)
 PRODUCT_NAME := msm8937_32go
 PRODUCT_DEVICE := msm8937_32go
 
