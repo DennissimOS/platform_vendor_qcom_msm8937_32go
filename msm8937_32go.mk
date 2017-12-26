@@ -210,7 +210,10 @@ PRODUCT_PACKAGES += android.hardware.camera.provider@2.4-impl
 # Enable binderized camera HAL
 PRODUCT_PACKAGES += android.hardware.camera.provider@2.4-service
 
-PRODUCT_SUPPORTS_VERITY := true
+user_variant := $(filter user userdebug,$(TARGET_BUILD_VARIANT))
+ifneq (,$(user_variant))
+    PRODUCT_SUPPORTS_VERITY := true
+endif
 PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system
 ifeq ($(ENABLE_VENDOR_IMAGE), true)
 PRODUCT_VENDOR_VERITY_PARTITION := /dev/block/bootdevice/by-name/vendor
