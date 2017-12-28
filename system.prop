@@ -158,7 +158,7 @@ ro.vendor.qti.am.reschedule_service=true
 ro.vendor.qti.config.zram=true
 
 # Create Swap disk, if below sys-prop enabled & also if device has lower (< 1 GB) RAM
-ro.vendor.qti.config.swap=true
+ro.vendor.qti.config.swap=false
 
 # set cutoff voltage to 3200mV
 ro.cutoff_voltage_mv=3200
