@@ -1,5 +1,6 @@
+ALLOW_MISSING_DEPENDENCIES=true
 TARGET_USES_AOSP := true
-TARGET_USES_AOSP_FOR_AUDIO := false
+TARGET_USES_AOSP_FOR_AUDIO := true
 TARGET_USES_QCOM_BSP := false
 
 #Go variant flag
@@ -25,9 +26,18 @@ BOARD_HAVE_QCOM_FM := true
 ENABLE_AB ?= false
 
 TARGET_USES_NQ_NFC := false
-TARGET_KERNEL_VERSION := 3.18
 
-TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+ifneq ($(wildcard kernel/msm-3.18),)
+    TARGET_KERNEL_VERSION := 3.18
+    $(warning "Build with 3.18 kernel.")
+else ifneq ($(wildcard kernel/msm-4.9),)
+    TARGET_KERNEL_VERSION := 4.9
+    $(warning "Build with 4.9 kernel")
+else
+    $(warning "Unknown kernel")
+endif
+
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := false
 
 # Enable features in video HAL that can compile only on this platform
 TARGET_USES_MEDIA_EXTENSIONS := true
@@ -65,6 +75,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 $(call inherit-product, device/qcom/common/common.mk)
 PRODUCT_NAME := msm8937_32go
 PRODUCT_DEVICE := msm8937_32go
+
+#kernel modules install path
+KERNEL_MODULES_INSTALL := dlkm
+KERNEL_MODULES_OUT := out/target/product/$(PRODUCT_NAME)/$(KERNEL_MODULES_INSTALL)/lib/modules
 
 # When can normal compile this module, need module owner enable below commands
 # font rendering engine feature switch
@@ -294,3 +308,4 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 
 # Add soft home, back and multitask keys
 PRODUCT_PROPERTY_OVERRIDES += qemu.hw.mainkeys=1
+SPF_DISABLE_MODULE := true
