@@ -25,6 +25,8 @@ endif
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androidkernel-
 BOARD_USES_GENERIC_AUDIO := true
 
+USE_CAMERA_STUB := false
+
 -include $(QCPATH)/common/msm8937_32go/BoardConfigVendor.mk
 TARGET_COMPILE_WITH_MSM_KERNEL := true
 TARGET_KERNEL_APPEND_DTB := true
