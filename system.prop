@@ -33,6 +33,12 @@ debug.enable.sglscale=1
 sdm.debug.disable_skip_validate=1
 debug.sf.recomputecrop=0
 
+#Property to enable display default color mode
+vendor.display.enable_default_color_mode=1
+
+# Display Properties as per treble compliance
+vendor.display.disable_skip_validate=1
+
 #ro.hdmi.enable=true
 #tunnel.decode=true
 
