@@ -176,6 +176,9 @@ on boot
     chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
     chmod 0660 /dev/cpuset/camera-daemon/tasks
 
+# access permission for wlan
+    chown system system /mnt/vendor/persist/WCNSS_qcom_wlan_nv.bin
+
 #USB controller configuration
     setprop vendor.usb.rndis.func.name "rndis"
     setprop vendor.usb.rmnet.func.name "rmnet_bam"
