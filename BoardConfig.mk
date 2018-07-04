@@ -42,6 +42,8 @@ TARGET_NO_RPC := true
 BOOTLOADER_GCC_VERSION := arm-eabi-4.8
 BOOTLOADER_PLATFORM := msm8952# use 8952 LK configuration
 
+TARGET_KERNEL_ARCH := arm
+
 # Enables CSVT
 TARGET_USES_CSVT := true
 
@@ -140,6 +142,9 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 1971322880
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 BOARD_OEMIMAGE_PARTITION_SIZE := 268435456
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
+ifeq ($(TARGET_KERNEL_VERSION), 4.9)
+BOARD_DTBOIMG_PARTITION_SIZE := 0x0800000
+endif
 
 ifeq ($(ENABLE_VENDOR_IMAGE), true)
 BOARD_VENDORIMAGE_PARTITION_SIZE := 419430400
@@ -151,6 +156,7 @@ endif
 ifeq ($(TARGET_KERNEL_VERSION), 4.9)
 BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/audio_apr.ko \
+    $(KERNEL_MODULES_OUT)/pronto_wlan.ko \
     $(KERNEL_MODULES_OUT)/audio_q6_notifier.ko \
     $(KERNEL_MODULES_OUT)/audio_adsp_loader.ko \
     $(KERNEL_MODULES_OUT)/audio_q6.ko \
@@ -162,6 +168,7 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/audio_wsa881x.ko \
     $(KERNEL_MODULES_OUT)/audio_wsa881x_analog.ko \
     $(KERNEL_MODULES_OUT)/audio_platform.ko \
+    $(KERNEL_MODULES_OUT)/audio_cpe_lsm.ko \
     $(KERNEL_MODULES_OUT)/audio_hdmi.ko \
     $(KERNEL_MODULES_OUT)/audio_stub.ko \
     $(KERNEL_MODULES_OUT)/audio_wcd9xxx.ko \
@@ -172,15 +179,11 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/audio_analog_cdc.ko \
     $(KERNEL_MODULES_OUT)/audio_native.ko \
     $(KERNEL_MODULES_OUT)/audio_machine_sdm450.ko \
-    $(KERNEL_MODULES_OUT)/pronto_wlan.ko
+    $(KERNEL_MODULES_OUT)/audio_machine_ext_sdm450.ko
 endif
 
-
-#    $(KERNEL_MODULES_OUT)/pronto_wlan.ko \
-
-#TARGET_USES_AOSP := true
 ifeq ($(strip $(TARGET_KERNEL_VERSION)), 4.9)
-     BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 androidboot.hardware=qcom androidboot.memcg=true user_debug=30 msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlycon=msm_hsl_uart,0x78B0000 androidboot.selinux=permissive androidboot.usbconfigfs=true firmware_class.path=/vendor/firmware_mnt/image
+     BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 androidboot.hardware=qcom user_debug=30 msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlycon=msm_hsl_uart,0x78B0000 vmalloc=300M androidboot.selinux=permissive firmware_class.path=/vendor/firmware_mnt/image androidboot.usbconfigfs=true
 else ifeq ($(strip $(TARGET_KERNEL_VERSION)), 3.18)
      BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom androidboot.memcg=true user_debug=30 msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlycon=msm_hsl_uart,0x78B0000 firmware_class.path=/vendor/firmware_mnt/image
 endif
@@ -256,4 +259,10 @@ BOARD_HAL_STATIC_LIBRARIES := libhealthd.msm
 ifeq ($(strip $(TARGET_KERNEL_VERSION)), 4.9)
     BOARD_SYSTEMSDK_VERSIONS:=28
     BOARD_VNDK_VERSION:= current
+endif
+
+#Generate DTBO image
+ifeq ($(TARGET_KERNEL_VERSION), 4.9)
+BOARD_KERNEL_SEPARATED_DTBO := true
+PMIC_QG_SUPPORT := true
 endif

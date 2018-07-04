@@ -1,4 +1,9 @@
 ALLOW_MISSING_DEPENDENCIES=true
+# Enable AVB 2.0
+ifneq ($(wildcard kernel/msm-4.9),)
+BOARD_AVB_ENABLE := true
+endif
+
 TARGET_USES_AOSP := true
 TARGET_USES_AOSP_FOR_AUDIO := false
 TARGET_USES_QCOM_BSP := false
@@ -243,14 +248,6 @@ PRODUCT_PACKAGES += android.hardware.camera.provider@2.4-impl
 # Enable binderized camera HAL
 PRODUCT_PACKAGES += android.hardware.camera.provider@2.4-service
 
-user_variant := $(filter user userdebug,$(TARGET_BUILD_VARIANT))
-ifneq (,$(user_variant))
-    PRODUCT_SUPPORTS_VERITY := true
-endif
-PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system
-ifeq ($(ENABLE_VENDOR_IMAGE), true)
-PRODUCT_VENDOR_VERITY_PARTITION := /dev/block/bootdevice/by-name/vendor
-endif
 # Enable logdumpd service only for non-perf bootimage
 ifeq ($(findstring perf,$(KERNEL_DEFCONFIG)),)
     ifeq ($(TARGET_BUILD_VARIANT),user)
@@ -316,11 +313,16 @@ $(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackageGo.mk)
 PRODUCT_PROPERTY_OVERRIDES += dalvik.vm.foreground-heap-growth-multiplier=2.0
 PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 
-# Add soft home, back and multitask keys
-PRODUCT_PROPERTY_OVERRIDES += qemu.hw.mainkeys=1
 SPF_DISABLE_MODULE := true
 
 ifeq ($(strip $(TARGET_KERNEL_VERSION)), 4.9)
     # Enable vndk-sp Libraries
     PRODUCT_PACKAGES += vndk_package
+endif
+
+# When AVB 2.0 is enabled, dm-verity is enabled differently,
+# below definitions are only required for AVB 1.0
+ifeq ($(BOARD_AVB_ENABLE),false)
+# dm-verity definitions
+  PRODUCT_SUPPORTS_VERITY := true
 endif
