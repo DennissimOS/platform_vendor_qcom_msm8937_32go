@@ -317,3 +317,8 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 # Add soft home, back and multitask keys
 PRODUCT_PROPERTY_OVERRIDES += qemu.hw.mainkeys=1
 SPF_DISABLE_MODULE := true
+
+ifeq ($(strip $(TARGET_KERNEL_VERSION)), 4.9)
+    # Enable vndk-sp Libraries
+    PRODUCT_PACKAGES += vndk_package
+endif
