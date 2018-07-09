@@ -369,6 +369,8 @@ ifeq ($(strip $(TARGET_KERNEL_VERSION)), 4.9)
     # Enable vndk-sp Libraries
     PRODUCT_PACKAGES += vndk_package
     PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
+    TARGET_USES_MKE2FS := true
+    $(call inherit-product, build/make/target/product/product_launched_with_p.mk)
 endif
 
 # When AVB 2.0 is enabled, dm-verity is enabled differently,
