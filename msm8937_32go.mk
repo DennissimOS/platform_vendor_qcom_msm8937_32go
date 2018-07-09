@@ -28,7 +28,6 @@ TARGET_USES_QTIC := false
 endif
 endif
 
-BOARD_HAVE_QCOM_FM := true
 # Default A/B configuration.
 ENABLE_AB ?= false
 
@@ -102,7 +101,6 @@ KERNEL_MODULES_OUT := out/target/product/$(PRODUCT_NAME)/$(KERNEL_MODULES_INSTAL
 
 #PRODUCT_BOOT_JARS += vcard \
                      com.qti.dpmframework
-PRODUCT_BOOT_JARS += qcom.fmradio
 
 DEVICE_MANIFEST_FILE := device/qcom/msm8937_32go/manifest.xml
 DEVICE_MATRIX_FILE   := device/qcom/common/compatibility_matrix.xml
