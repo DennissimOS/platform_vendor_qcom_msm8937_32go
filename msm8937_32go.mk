@@ -305,6 +305,8 @@ PRODUCT_PACKAGES += update_engine \
 PRODUCT_PACKAGES_DEBUG += bootctl
 endif
 
+TARGET_MOUNT_POINTS_SYMLINKS := false
+
 # Inherit Go default properties, sets is-low-ram-device flag etc.
 $(call inherit-product, build/target/product/go_defaults.mk)
 $(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackageGo.mk)
