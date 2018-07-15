@@ -316,6 +316,7 @@ SPF_DISABLE_MODULE := true
 ifeq ($(strip $(TARGET_KERNEL_VERSION)), 4.9)
     # Enable vndk-sp Libraries
     PRODUCT_PACKAGES += vndk_package
+    PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 endif
 
 # When AVB 2.0 is enabled, dm-verity is enabled differently,
