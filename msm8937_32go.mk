@@ -169,6 +169,9 @@ PRODUCT_PACKAGES += hal-server
 # FBE support
 PRODUCT_COPY_FILES += \
     device/qcom/msm8937_32go/init.qti.qseecomd.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.qseecomd.sh
+# VB xml
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.verified_boot.xml:system/etc/permissions/android.software.verified_boot.xml
 
 # MSM IRQ Balancer configuration file
 PRODUCT_COPY_FILES += \
