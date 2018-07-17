@@ -11,6 +11,9 @@ TARGET_USES_QCOM_BSP := false
 #Go variant flag
 TARGET_HAS_LOW_RAM := true
 
+#For targets which donot support vulkan
+TARGET_NOT_SUPPORT_VULKAN :=true
+
 ifeq ($(TARGET_USES_AOSP),true)
 TARGET_DISABLE_DASH := true
 endif
