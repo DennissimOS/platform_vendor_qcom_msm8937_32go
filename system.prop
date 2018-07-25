@@ -185,3 +185,6 @@ persist.vendor.camera.display.lmax=1280x720
 
 #set cutoff voltage to 3400mV
 ro.cutoff_voltage_mv=3400
+
+#Enable userspace LMK
+ro.lmk.enable_userspace_lmk=true
