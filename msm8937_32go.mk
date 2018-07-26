@@ -4,7 +4,7 @@ ifneq ($(wildcard kernel/msm-4.9),)
 BOARD_AVB_ENABLE := true
 endif
 
-TARGET_USES_AOSP := true
+TARGET_USES_AOSP := false
 TARGET_USES_AOSP_FOR_AUDIO := false
 TARGET_USES_QCOM_BSP := false
 
@@ -219,7 +219,7 @@ PRODUCT_COPY_FILES += \
     device/qcom/msm8937_32go/WCNSS_wlan_dictionary.dat:persist/WCNSS_wlan_dictionary.dat
 
 ifneq ($(TARGET_DISABLE_DASH), true)
-    PRODUCT_BOOT_JARS += qcmediaplayer
+#    PRODUCT_BOOT_JARS += qcmediaplayer
 endif
 
 PRODUCT_PACKAGES += \
