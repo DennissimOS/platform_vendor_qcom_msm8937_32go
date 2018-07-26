@@ -294,6 +294,17 @@ PRODUCT_PACKAGES += android.hardware.gatekeeper@1.0-impl \
                     android.hardware.keymaster@3.0-service
 endif
 
+#Enable KEYMASTER 4.0 for Android P not for OTA's
+ifeq ($(strip $(TARGET_KERNEL_VERSION)), 4.9)
+    ENABLE_KM_4_0 := true
+endif
+
+ifeq ($(ENABLE_KM_4_0), true)
+    DEVICE_MANIFEST_FILE += device/qcom/msm8937_32go/keymaster.xml
+else
+    DEVICE_MANIFEST_FILE += device/qcom/msm8937_32go/keymaster_ota.xml
+endif
+
 PRODUCT_PROPERTY_OVERRIDES += rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 PRODUCT_PROPERTY_OVERRIDES += vendor.rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 
