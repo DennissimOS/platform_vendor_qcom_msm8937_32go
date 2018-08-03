@@ -254,6 +254,14 @@ ifeq ($(HOST_OS),linux)
     endif
 endif
 
+ifeq ($(TARGET_KERNEL_VERSION), 4.9)
+    PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION += $(shell find $(TOP_DIR)device/qcom/common/jar-profiles/ -iname '*.txt')
+endif
+
+ifeq ($(TARGET_KERNEL_VERSION), 4.9)
+    PRODUCT_DEX_PREOPT_PROFILE_DIR := device/qcom/msm8937_32go/Apk-profiles/
+endif
+
 FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
 
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.msm
