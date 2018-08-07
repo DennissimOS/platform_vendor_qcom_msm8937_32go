@@ -377,3 +377,7 @@ ifeq ($(BOARD_AVB_ENABLE),false)
 # dm-verity definitions
   PRODUCT_SUPPORTS_VERITY := true
 endif
+
+# Enable DM file preopting to reduce first boot time
+PRODUCT_DEX_PREOPT_GENERATE_DM_FILES := true
+PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := verify
