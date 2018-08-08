@@ -307,7 +307,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>gnss_vendor</instance>
         </interface>
     </hal>
-<!--    <hal format="hidl">
+    <hal format="hidl">
         <name>android.hardware.vibrator</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -315,8 +315,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>IVibrator</name>
             <instance>default</instance>
         </interface>
-    </hal> -->
-
+    </hal>
     <hal format="hidl">
         <name>com.qualcomm.qti.dpm.api</name>
         <transport>hwbinder</transport>
