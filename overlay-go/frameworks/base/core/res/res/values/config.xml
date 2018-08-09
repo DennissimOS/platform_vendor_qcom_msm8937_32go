@@ -46,4 +46,6 @@
        <item>"wigig0"</item>
        <item>"wlan0"</item>
    </string-array>
+
+   <bool translatable="false" name="config_wifi_enable_wifi_firmware_debugging">false</bool>
 </resources>
