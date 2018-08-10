@@ -269,6 +269,8 @@ BOARD_HAL_STATIC_LIBRARIES := libhealthd.msm
 ifeq ($(strip $(TARGET_KERNEL_VERSION)), 4.9)
     BOARD_SYSTEMSDK_VERSIONS:=28
     BOARD_VNDK_VERSION:= current
+    # 64-bit binder interface is mandatory from Android P
+    TARGET_USES_64_BIT_BINDER := true
 endif
 
 #Generate DTBO image
