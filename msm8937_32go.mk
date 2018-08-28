@@ -395,3 +395,9 @@ PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := verify
 # On P, classes*.dex of privileged apps are left uncompressed by default
 # For Go targets, compress them to save disk space.
 DONT_UNCOMPRESS_PRIV_APPS_DEXS := true
+
+ifeq ($(strip $(TARGET_KERNEL_VERSION)), 3.18)
+    # Enable extra vendor libs
+    ENABLE_EXTRA_VENDOR_LIBS := true
+    PRODUCT_PACKAGES += vendor-extra-libs
+endif
