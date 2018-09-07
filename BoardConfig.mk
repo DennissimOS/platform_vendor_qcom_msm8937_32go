@@ -279,6 +279,16 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 PMIC_QG_SUPPORT := true
 endif
 
+ifneq ($(ENABLE_AB),true)
+  ifeq ($(BOARD_KERNEL_SEPARATED_DTBO),true)
+    # Set Header version for bootimage
+    BOARD_BOOTIMG_HEADER_VERSION := 1
+    BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
+    # Enable DTBO for recovery image
+    BOARD_INCLUDE_RECOVERY_DTBO := true
+  endif
+endif
+
 # Enable this flag to avoid packing some fonts
 # on Go targets to save on system.img size
 EXCLUDE_SERIF_FONTS := true
