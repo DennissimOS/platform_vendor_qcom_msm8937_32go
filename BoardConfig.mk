@@ -278,3 +278,7 @@ ifeq ($(TARGET_KERNEL_VERSION), 4.9)
 BOARD_KERNEL_SEPARATED_DTBO := true
 PMIC_QG_SUPPORT := true
 endif
+
+# Enable this flag to avoid packing some fonts
+# on Go targets to save on system.img size
+EXCLUDE_SERIF_FONTS := true
