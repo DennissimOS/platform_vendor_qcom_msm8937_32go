@@ -108,6 +108,9 @@ KERNEL_MODULES_OUT := out/target/product/$(PRODUCT_NAME)/$(KERNEL_MODULES_INSTAL
 #PRODUCT_BOOT_JARS += vcard \
                      com.qti.dpmframework
 
+#Enable this flag for advanced face detection for low ram
+TARGET_USES_QTIC_EXTENSION := true
+
 DEVICE_MANIFEST_FILE := device/qcom/msm8937_32go/manifest.xml
 DEVICE_MATRIX_FILE   := device/qcom/common/compatibility_matrix.xml
 DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/msm8937_32go/framework_manifest.xml
