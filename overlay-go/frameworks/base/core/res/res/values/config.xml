@@ -48,4 +48,7 @@
    </string-array>
 
    <bool translatable="false" name="config_wifi_enable_wifi_firmware_debugging">false</bool>
+
+   <!-- Enable WPA3 support -->
+   <bool translatable="false" name="config_wifi_wpa3_supported">false</bool>
 </resources>
